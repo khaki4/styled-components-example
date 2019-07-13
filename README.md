@@ -178,3 +178,19 @@ function App() {
   );
 }
 ```
+
+## Nesting
+```javascript
+const Card = styled.div`
+  background-color: red;
+`;
+
+const Container = styled.div`
+  height: 100vh;
+  width: 1000%;
+  background-color: pink;
+  ${Card}:last-child {
+    background-color: blue;
+  }
+`;
+```
