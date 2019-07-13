@@ -112,3 +112,23 @@ const Button = styled.button`
 `;
 
 ```
+
+## Extra Attribute
+```javascript
+const Input = styled.input.attrs({
+  required: true
+})`
+  border-radius:5px;
+`;
+
+function App() {
+  return (
+    <>
+    <GlobalStyle />
+    <Container>
+      <Input placeholder="hello"/>
+    </Container>
+    </>
+  );
+}
+```
