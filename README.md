@@ -151,3 +151,30 @@ const Container = styled.div`
   ${awesomeCard}
 `;
 ```
+
+## Theme
+```javascript
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+
+const themes = {
+  mainColor: "#3498db",
+  dangerColor: "#e74c3c",
+  successColor: "#2ecc71"
+};
+
+const Button = styled.button`
+  border-radius: 30px;
+  padding: 25px 15px;
+  background-color: ${props => props.theme.successColor};
+`;
+
+function App() {
+  return (
+  <>
+    <ThemeProvider theme={theme}>
+      <Button>1234</Button>
+    </ThemeProvider>
+  </>
+  );
+}
+```
