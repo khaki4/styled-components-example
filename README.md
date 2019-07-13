@@ -1,4 +1,6 @@
-# Styled Components 기본 사용법
+# Styled Components
+
+## 기본 사용법
 
 ```javascript
 function App() {
@@ -31,4 +33,82 @@ const Button = styled.button`
   /* 동적 prop 분기 */
   background-color: ${props => (props.danger ? "#e74c3c" : "#2ecc71")};
 `;
+```
+
+## 컴포넌트 재활용, Override
+
+```javascript
+// styled component 는 {} 안에
+<Anchor as={Button} href="https://google.com">
+  Go to google
+</Anchor>
+// native element sms "" 안에
+<Anchor as="a" href="https://google.com">
+  Go to google
+</Anchor>
+
+// https://github.com/styled-components/styled-components/issues/1956#issuecomment-416591046
+const Anchor = styled(Button)`
+  text-decoration: none;
+`;
+```
+
+## Global Style
+- https://www.styled-components.com/docs/api
+```javascript
+import styled, { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+  }
+`;
+
+function App() {
+  return (
+    <Container>
+      <GlobalStyle />
+      <Button>Hello</Button>
+      <Button danger>Hi</Button>
+      <Anchor as={Button} href="https://google.com">
+        Go to google
+      </Anchor>
+      <Anchor as="a" href="https://google.com">
+        Go to google
+      </Anchor>
+    </Container>
+  );
+}
+```
+
+## Animation
+```javascript
+import styled, { createGlobalStyle, keyframes } from "styled-components";
+
+function App() {
+  return (
+    <Container>
+      <GlobalStyle />
+      <Button>Hello</Button>
+      <Button danger rotationTime={5}>Hi</Button>\
+    </Container>
+  );
+}
+
+const rotation = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+const Button = styled.button`
+  animation-name: ${props => props.danger && rotation};
+  animation-duration: ${props => `${props.rotationTime}s`};
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+`;
+
 ```
